@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 if test -e $HOME/.bashrc; then
   if grep -q "export PATH=$HOME/helpful-scripts/bin:$PATH" $HOME/.bashrc; then
     echo "helpful-scripts are already on the PATH"
