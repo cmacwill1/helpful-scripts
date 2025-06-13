@@ -12,5 +12,7 @@ This will create a .bashrc if it doesn't exist, and add the scripts in `bin` to 
 bash must be installed and be the default interactive shell, otherwise the initialization script will do nothing. For most cases, this is not a concern, and everything should just work.
 # Usage
 All commands in `bin` are added to the user's path (meaning they benefit from systemwide calling, tab autocomplete, etc). All commands can be called with the --help flag to list availible options and general usage.
+# Updates
+If new scripts are added or bugs are patched, simply `git pull` from `$HOME/helpful-scripts`, no need to reinitialize.
 
 Feel free to reach out with any questions.
