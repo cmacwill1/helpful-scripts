@@ -1,0 +1,69 @@
+#!/bin/bash
+
+#usage() 
+#{
+#  echo " "
+#  echo "Usage: comsall [ -v ] [ -g ] [ -d ] <GROUP> "
+#  echo " "
+#  echo "     -g  List all the GROUPs" 
+#  echo "     -d  print debugging" 
+#  echo " "
+#  exit
+#}
+
+#if [ $# -ge 1 ]; then
+#  set -- `getopt gd $*`
+#  for i in $*
+#  do
+#    case $i in
+#      -g) group=1; shift;;
+#      -d) debug=1; shift;;
+#      --) shift; break;;
+#    esac
+#  done
+#else
+#  usage
+#fi
+
+#if [ -n "$debug" ]; then
+#  echo "group: $group"
+#  echo "debug: $debug"
+#  echo "GNAME: $GNAME"
+#fi
+
+#if [ -n "$group" ]; then
+#  echo
+#  grep ^GROUP /var/lib/licenses/license.opt.abaqus.MOORING | cut -d" " -f 2 | sort -u
+#  echo
+#  exit
+#fi
+
+GNAME="SIEGMUND"
+#if [ ! -n "$GNAME" ]; then
+#  usage
+#  exit
+#else
+#  if [ -n "$debug" ]; then
+#    echo "#$GNAME#"
+#  fi
+#fi
+
+LIC="1736@mooring.ecn.purdue.edu"
+GROUP=`grep "^GROUP $GNAME" /var/lib/licenses/license.opt.abaqus.MOORING | sed "s/GROUP $GNAME //" | awk '{aggr=aggr " " $0} END {print aggr}' | xargs | sed 's/ /|/g'`
+MODULES="abaqus"
+#if [ -n "$debug" ]; then
+#  echo
+#  echo "GROUP: $GROUP"
+#  echo "MODULES: $MODULES"
+#  echo
+#fi
+
+echo $GROUP
+for i in $MODULES
+do
+echo
+ml flexlm
+lmstat -f $i -c $LIC | egrep "$i:|permanent\(|RESERVATION|mooring.ecn.purdue.edu" | egrep "$i:|permanent\(|$GROUP|$GNAME"
+echo
+done
+echo
