@@ -2,8 +2,7 @@
 This repository contains some useful bash scripts for abaqus and cluster job viewing. 
 To download the scripts and add them to the path, run the following code in a linux terminal (with bash & git installed, which they generally are by defualt): 
 ``` 
-cd $HOME 
-git clone https://github.com/cmacwill1/helpful-scripts.git 
+cd $HOME && git clone https://github.com/cmacwill1/helpful-scripts.git 
 cd helpful-scripts 
 source init.sh 
 ``` 
