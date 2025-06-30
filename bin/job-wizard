@@ -28,12 +28,12 @@ if [[ "$1" != *.inp ]]; then
 fi
 
 if [ -d "/anvil/projects/x-$ALLOCATION/jobs/" ]; then
-  mkdir /anvil/projects/x-$ALLOCATION/jobs/"$1"
-  mv $1 /anvil/projects/x-$ALLOCATION/jobs/"$1" && cd "$_"
+  :
 else
   echo "No jobs directory! Making..."
   mkdir /anvil/projects/x-$ALLOCATION/jobs/
   echo "Done"
-  mkdir /anvil/projects/x-$ALLOCATION/jobs/"$1"
-  mv $1 /anvil/projects/x-$ALLOCATION/jobs/"$1" && cd "$_"
 fi
+mkdir /anvil/projects/x-$ALLOCATION/jobs/"${1%.*}"
+mv $1 /anvil/projects/x-$ALLOCATION/jobs/"${1%.*}"
+cd /anvil/projects/x-$ALLOCATION/jobs/"${1%.*}"
