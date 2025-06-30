@@ -34,6 +34,20 @@ else
   mkdir /anvil/projects/x-$ALLOCATION/jobs/
   echo "Done"
 fi
-mkdir /anvil/projects/x-$ALLOCATION/jobs/"${1%.*}"
-mv $1 /anvil/projects/x-$ALLOCATION/jobs/"${1%.*}"
-cd /anvil/projects/x-$ALLOCATION/jobs/"${1%.*}"
+
+read -p "Enter a new name for this job (no spaces or . please!):" USER_INPUT
+
+if [ -n "$USER_INPUT" ]; then
+  FILE = "$USER_INPUT.inp"
+  mv "$1" ./"$FILE"
+else
+  FILE = "$1"
+fi
+
+if [ -d "/anvil/projects/x-$ALLOCATION/jobs/${FILE%.*}" ]; then
+  echo "Error: A job for $FILE already exists! Please choose a unique name"
+else
+  mkdir /anvil/projects/x-$ALLOCATION/jobs/${FILE%.*}
+  mv "$FILE" /anvil/projects/x-$ALLOCATION/jobs/${FILE%.*}
+  cd /anvil/projects/x-$ALLOCATION/jobs/${FILE%.*}
+fi
