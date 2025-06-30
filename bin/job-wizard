@@ -38,10 +38,10 @@ fi
 read -p "Enter a new name for this job (no spaces or . please!):" USER_INPUT
 
 if [ -n "$USER_INPUT" ]; then
-  FILE = "$USER_INPUT.inp"
+  FILE="$USER_INPUT.inp"
   mv "$1" ./"$FILE"
 else
-  FILE = "$1"
+  FILE="$1"
 fi
 
 if [ -d "/anvil/projects/x-$ALLOCATION/jobs/${FILE%.*}" ]; then
