@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -d "/anvil/projects/x-$ALLOCATION/jobs/" ]; then
+  cd /anvil/projects/x-$ALLOCATION/jobs/
+else
+  echo "No jobs directory! Making..."
+  mkdir /anvil/projects/x-$ALLOCATION/jobs/
+  echo "Done"
+  cd /anvil/projects/x-$ALLOCATION/jobs/
+fi

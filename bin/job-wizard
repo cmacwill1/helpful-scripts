@@ -1,0 +1,39 @@
+#!/bin/bash
+############################################################
+Help()
+{
+   # Display Help
+   echo "This script lists the jobs for the user on the current cluster."
+   echo
+   echo "Usage: $(basename "$0") [options]"
+   echo "options:"
+   echo "  -u, --user   Specify a different user."
+   echo "  -h, --help   Print this help."
+   echo
+}
+############################################################
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <filename.inp>"
+  exit 1
+fi
+
+if [ ! -f "$1" ]; then
+  echo "Error: File '$1' does not exist."
+  exit 1
+fi
+
+if [[ "$1" != *.inp ]]; then
+  echo "Error: This job wizard only supports ABAQUS .inp files"
+  exit 1
+fi
+
+if [ -d "/anvil/projects/x-$ALLOCATION/jobs/" ]; then
+  mkdir /anvil/projects/x-$ALLOCATION/jobs/"$1"
+  mv $1 /anvil/projects/x-$ALLOCATION/jobs/"$1" && cd "$_"
+else
+  echo "No jobs directory! Making..."
+  mkdir /anvil/projects/x-$ALLOCATION/jobs/
+  echo "Done"
+  mkdir /anvil/projects/x-$ALLOCATION/jobs/"$1"
+  mv $1 /anvil/projects/x-$ALLOCATION/jobs/"$1" && cd "$_"
+fi
