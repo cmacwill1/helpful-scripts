@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ grep -q "Frame" $0 ]; then
-	sed -i -e '1,/Frame/d' -e '/^$/,$d' $0
+if [ grep -q "Frame" $1 ]; then
+	sed -i -e '1,/Frame/d' -e '/^$/,$d' $1
 else
-	echo "The file $0 is unsnippable"
+	echo "The file $1 is unsnippable"
 fi
